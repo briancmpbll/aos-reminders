@@ -1,26 +1,71 @@
-import { IEffects } from './data'
-import { TGameStructure } from 'meta/turn_structure'
+import { TSupportedFaction } from 'meta/factions'
+import { TGameStructure } from 'meta/game_structure'
+import { TEffects, TEntry } from './data'
+import { IAllySelections, ISelections } from './selections'
+import { TRealms } from './realmscapes'
+import { TAllySelectionStore } from './store'
 
-export interface IEntry {
-  name: string
-  effects: IEffects[]
-}
+export type TAllyArmies = { [key: string]: IArmy }
 
-export type TArtifacts = IEntry[]
-export type TBattalions = IEntry[]
-export type TUnits = IEntry[]
-export type TCommandTraits = IEntry[]
-export type TAbilities = IEffects[]
+export type TAllyData = Array<{
+  allyArmy: IArmy
+  allySelections: IAllySelections
+}>
 
-export interface IArmyWithoutGame {
-  Abilities: TAbilities
-  Artifacts: TArtifacts
-  Battalions: TBattalions
-  Traits: TCommandTraits
-  Units: TUnits
+export type TAbilities = TEffects[]
+export type TAllegiances = TEntry[]
+export type TArtifacts = TEntry[]
+export type TBattalions = TEntry[]
+export type TCommands = TEntry[]
+export type TTraits = TEntry[]
+export type TEndlessSpells = TEntry[]
+export type TScenery = TEntry[]
+export type TSpells = TEntry[]
+export type TTriumphs = TEntry[]
+export type TUnits = TEntry[]
+
+export interface IInitialArmy {
+  Abilities?: TAbilities
+  Allegiances?: TAllegiances
+  AlliedUnits?: TUnits
+  Artifacts?: TArtifacts
+  Battalions?: TBattalions
+  EndlessSpells?: TEndlessSpells
+  Scenery?: TScenery
+  Spells?: TSpells
+  Traits?: TTraits
+  Units?: TUnits
   Game?: TGameStructure
 }
 
-export interface IArmy extends IArmyWithoutGame {
+export interface IArmy {
+  Abilities: TAbilities
+  Allegiances: TAllegiances
+  Artifacts: TArtifacts
+  Battalions: TBattalions
+  Commands: TCommands
+  EndlessSpells: TEndlessSpells
+  Scenery: TScenery
+  Spells: TSpells
+  Traits: TTraits
+  Triumphs: TTriumphs
+  Units: TUnits
   Game: TGameStructure
+}
+
+export interface ICollection {
+  Artifacts: TArtifacts
+  Battalions: TBattalions
+  Commands: TCommands
+  Spells: TSpells
+  Traits: TTraits
+}
+
+export interface ICurrentArmy {
+  allyFactionNames: TSupportedFaction[]
+  allySelections: TAllySelectionStore
+  factionName: TSupportedFaction
+  realmscape_feature: string | null
+  realmscape: TRealms | null
+  selections: ISelections
 }

@@ -1,56 +1,30 @@
-import React, { useState, useMemo, useEffect } from 'react'
-import Reminders from './info/reminders'
-import { ArmyBuilder } from './input/army_builder'
-import { PrintHeader, PrintFooter, PrintUnits } from './print/print'
-import { SUPPORTED_FACTIONS } from 'meta/factions'
-import { getArmy } from 'utils/getArmy'
-import Header from './page/header'
-import Footer from './page/footer'
-import { logFactionSwitch, logPageView } from 'utils/analytics'
-import { ValueType } from 'react-select/lib/types'
-import { TDropdownOption } from './input/select'
+import React, { useEffect, lazy, Suspense } from 'react'
+import { Loading } from './helpers/suspenseFallbacks'
+
+// Auth
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { PrivateRoute } from 'components/page/privateRoute'
+import { handleCheckout } from 'utils/handleCheckout'
+
+// Lazy loading routes (takes advantage of code splitting)
+const Home = lazy(() => import(/* webpackChunkName: 'Home' */ 'components/routes/Home'))
+const Profile = lazy(() => import(/* webpackChunkName: 'Profile' */ 'components/routes/Profile'))
+const Subscribe = lazy(() => import(/* webpackChunkName: 'Subscribe' */ 'components/routes/Subscribe'))
 
 const App = () => {
-  logPageView()
-  const [selections, setSelections] = useState({
-    artifacts: [] as string[],
-    battalions: [] as string[],
-    traits: [] as string[],
-    units: [] as string[],
-  })
-  const [factionName, setFactionName] = useState(SUPPORTED_FACTIONS[0])
-  const [realmscape, setRealmscape] = useState('None')
-  const army = useMemo(() => getArmy(factionName), [factionName])
-
-  const useSetFactionName = (selectValue: ValueType<TDropdownOption>, action) => {
-    const { value } = selectValue as TDropdownOption
-    setRealmscape(value)
-  }
-
-  // Reset the state when factionName is switched
-  useEffect(() => {
-    setSelections({ artifacts: [], battalions: [], traits: [], units: [] })
-    setRealmscape('None')
-    logFactionSwitch(factionName)
-  }, [factionName])
+  useEffect(() => handleCheckout(), []) // Post-checkout handling
 
   return (
     <div className="d-block">
-      <Header setFactionName={setFactionName} factionName={factionName} />
-      <PrintHeader factionName={factionName} />
-      <PrintUnits selections={selections} realmscape={realmscape} />
-
-      <ArmyBuilder
-        army={army}
-        realmscape={realmscape}
-        selections={selections}
-        setRealmscape={useSetFactionName}
-        setSelections={setSelections}
-      />
-      <Reminders army={army} factionName={factionName} selections={selections} realmscape={realmscape} />
-
-      <PrintFooter />
-      <Footer />
+      <BrowserRouter>
+        <Suspense fallback={<Loading />}>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <PrivateRoute path="/profile" component={Profile} />
+            <Route path="/subscribe" component={Subscribe} />
+          </Switch>
+        </Suspense>
+      </BrowserRouter>
     </div>
   )
 }

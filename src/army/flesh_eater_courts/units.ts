@@ -26,7 +26,7 @@ export const Units: TUnits = [
         name: `Summon Men-at-arms`,
         desc: `You can use this command ability at the end of your movement phase. If you do so, pick a friendly model that has this command ability and has not used it before in the battle. That model summons 1 unit of 10 Crypt Ghouls to the battlefield. The summoned unit is added to your army, and must be set up wholly within 6" of the edge of the battlefield and more than 9" from any enemy units.`,
         when: [END_OF_MOVEMENT_PHASE],
-        command: true,
+        command_ability: true,
       },
     ],
   },
@@ -35,7 +35,7 @@ export const Units: TUnits = [
     effects: [
       {
         name: `Death Shriek`,
-        desc: `Do not use the attack sequence for an attack made with this model's Death Shriek. Instead roll a dice and add the Death Shriek value shown on this model's damage table. If the total is higher than the target unit's Bravery characteristic, the target unit suffers a number of mortal wounds equal to the difference between its Bravery characteristic and the total.`,
+        desc: `Do not use the attack sequence for an attack made with this model's Death Shriek. Instead roll a D6 and add the Death Shriek value shown on this model's damage table. If the total is higher than the target unit's Bravery characteristic, the target unit suffers a number of mortal wounds equal to the difference between its Bravery characteristic and the total.`,
         when: [SHOOTING_PHASE],
       },
       {
@@ -57,7 +57,7 @@ export const Units: TUnits = [
         name: `Summon Royal Guard`,
         desc: `You can use this command ability at the end of your movement phase. If you do so, pick a friendly model that has this command ability and has not used it before in the battle. That model summons 1 unit of 3 Crypt Horrors or 1 unit of 3 Crypt Flayers to the battlefield. The summoned unit is added to your army, and must be set up wholly within 6" of the edge of the battlefield and more than 9" from any enemy units.`,
         when: [END_OF_MOVEMENT_PHASE],
-        command: true,
+        command_ability: true,
       },
     ],
   },
@@ -73,11 +73,11 @@ export const Units: TUnits = [
         name: `Summon Courtier`,
         desc: `You can use this command ability at the end of your movement phase. If you do so, pick a friendly model that has this command ability and has not used it before in the battle. That model summons 1 Courtier unit to the battlefield. The summoned unit is added to your army, and must be set up wholly within 6" of the edge of the battlefield and more than 9" from any enemy units.`,
         when: [END_OF_MOVEMENT_PHASE],
-        command: true,
+        command_ability: true,
       },
       {
         name: `Pestilential Breath`,
-        desc: `When you attack with this model's Pestilential Breath, roll a dice before making the hit roll for the attack. If the roll is less than or equal to the number of models in the target unit, the attack scores a hit without needing to make a hit roll.`,
+        desc: `When you attack with this model's Pestilential Breath, roll a D6 before making the hit roll for the attack. If the roll is less than or equal to the number of models in the target unit, the attack scores a hit without needing to make a hit roll.`,
         when: [SHOOTING_PHASE],
       },
     ],
@@ -169,7 +169,7 @@ export const Units: TUnits = [
         name: `Summon Imperial Guard`,
         desc: `You can use this command ability at the end of your movement phase. If you do so, pick 1 friendly model that has this command ability and has not used it before in the battle. That model summons 1 of the following units to the battlefield: 1 COURTIER; or 1 unit of up to 3 KNIGHTS; or 1 unit of up to 20 SERFS. The summoned unit is added to your army, and must be set up wholly within 6" of the edge of the battlefield and more than 9" from any enemy units.`,
         when: [END_OF_MOVEMENT_PHASE],
-        command: true,
+        command_ability: true,
       },
     ],
   },
@@ -228,7 +228,7 @@ export const Units: TUnits = [
     effects: [
       {
         name: `Death Shriek`,
-        desc: `Do not use the attack sequence for an attack made with this model's Death Shriek. Instead roll a dice and add the Death Shriek value shown on this model's damage table. If the total is higher than the target unit's Bravery characteristic, the target unit suffers a number of mortal wounds equal to the difference between its Bravery characteristic and the total.`,
+        desc: `Do not use the attack sequence for an attack made with this model's Death Shriek. Instead roll a D6 and add the Death Shriek value shown on this model's damage table. If the total is higher than the target unit's Bravery characteristic, the target unit suffers a number of mortal wounds equal to the difference between its Bravery characteristic and the total.`,
         when: [SHOOTING_PHASE],
       },
       {
@@ -253,7 +253,7 @@ export const Units: TUnits = [
     effects: [
       {
         name: `Pestilential Breath`,
-        desc: `When you attack with this model's Pestilential Breath, roll a dice before making the hit roll for the attack. If the roll is less than or equal to the number of models in the target unit, the attack scores a hit without needing to make a hit roll.`,
+        desc: `When you attack with this model's Pestilential Breath, roll a D6 before making the hit roll for the attack. If the roll is less than or equal to the number of models in the target unit, the attack scores a hit without needing to make a hit roll.`,
         when: [SHOOTING_PHASE],
       },
     ],

@@ -1,14 +1,51 @@
 import { TTurnWhen } from './phases'
-import { ITurnAction } from 'meta/turn_structure'
 
-export interface IEffects {
+export type TEntryProperties =
+  | 'allegiance_ability'
+  | 'artifact'
+  | 'command_ability'
+  | 'command_trait'
+  | 'endless_spell'
+  | 'scenery'
+  | 'spell'
+  | 'triumph'
+
+export const ENTRY_PROPERTIES: TEntryProperties[] = [
+  'allegiance_ability',
+  'artifact',
+  'command_ability',
+  'command_trait',
+  'endless_spell',
+  'scenery',
+  'spell',
+  'triumph',
+]
+
+export type TEntry = {
+  name: string
+  effects: TEffects[]
+} & {
+  [prop in TEntryProperties]?: boolean
+}
+
+export type TEffects = {
   name: string
   desc: string
-  when: TTurnWhen[]
-  command?: boolean
   tag?: string
+  when: TTurnWhen[]
+} & {
+  [prop in TEntryProperties]?: boolean
 }
 
 export interface IReminder {
-  [key: string]: ITurnAction[]
+  [key: string]: TTurnAction[]
+}
+
+export type TTurnAction = {
+  condition: string
+  desc: string
+  name?: string
+  tag?: string | false
+} & {
+  [prop in TEntryProperties]?: boolean
 }

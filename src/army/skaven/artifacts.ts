@@ -1,18 +1,18 @@
 import { TArtifacts } from 'types/army'
 import {
-  HERO_PHASE,
-  DURING_GAME,
-  END_OF_ROUND,
   BATTLESHOCK_PHASE,
-  START_OF_HERO_PHASE,
   COMBAT_PHASE,
-  START_OF_ROUND,
-  START_OF_MOVEMENT_PHASE,
+  DURING_GAME,
   END_OF_COMBAT_PHASE,
-  START_OF_COMBAT_PHASE,
+  END_OF_MOVEMENT_PHASE,
+  END_OF_ROUND,
+  HERO_PHASE,
   MOVEMENT_PHASE,
   SHOOTING_PHASE,
-  END_OF_MOVEMENT_PHASE,
+  START_OF_COMBAT_PHASE,
+  START_OF_HERO_PHASE,
+  START_OF_MOVEMENT_PHASE,
+  START_OF_ROUND,
   START_OF_SHOOTING_PHASE,
 } from 'types/phases'
 
@@ -32,7 +32,7 @@ const Artifacts: TArtifacts = [
     effects: [
       {
         name: `Suspicious Stone (Masterclan)`,
-        desc: `Roll a dice each time you allocate a wound or mortal wound to the bearer. On a 5+ that wound or mortal wound is negated.`,
+        desc: `Roll a D6 each time you allocate a wound or mortal wound to the bearer. On a 5+ that wound or mortal wound is negated.`,
         when: [DURING_GAME],
       },
     ],
@@ -82,7 +82,7 @@ const Artifacts: TArtifacts = [
     effects: [
       {
         name: `The Brass Orb (Skryre)`,
-        desc: `Once per battle, at the start of your hero phase, you can roll a dice. On a 6 the closest enemy model within 6" of the bearer is slain. If several enemy models are equally close, you can pick which one is slain.`,
+        desc: `Once per battle, at the start of your hero phase, you can roll a D6. On a 6 the closest enemy model within 6" of the bearer is slain. If several enemy models are equally close, you can pick which one is slain.`,
         when: [START_OF_HERO_PHASE],
       },
     ],
@@ -92,7 +92,7 @@ const Artifacts: TArtifacts = [
     effects: [
       {
         name: `Warpstone Armour (Skryre)`,
-        desc: `Roll a dice each time a wound inflicted by a melee weapon is allocated to the bearer and not negated. On a 5+ the attacking unit suffers 1 mortal wound.`,
+        desc: `Roll a D6 each time a wound inflicted by a melee weapon is allocated to the bearer and not negated. On a 5+ the attacking unit suffers 1 mortal wound.`,
         when: [COMBAT_PHASE],
       },
     ],
@@ -112,7 +112,7 @@ const Artifacts: TArtifacts = [
     effects: [
       {
         name: `Skryre's-breath Bellows (Skryre)`,
-        desc: `At the start of your hero phase, the bearer can pump the bellows. If they do so, roll a dice for each unit other than the bearer that is within 3" of the bearer. On a 4+ that unit suffers D3 mortal wounds.`,
+        desc: `At the start of your hero phase, the bearer can pump the bellows. If they do so, roll a D6 for each unit other than the bearer that is within 3" of the bearer. On a 4+ that unit suffers D3 mortal wounds.`,
         when: [START_OF_HERO_PHASE],
       },
     ],
@@ -122,7 +122,7 @@ const Artifacts: TArtifacts = [
     effects: [
       {
         name: `Vial of the Fulminator (Skryre)`,
-        desc: `At the start of your movement phase, you can pick 1 friendly CLANS SKRYRE WAR MACHINE within 3" of the bearer. Double that unit's Move characteristic until the end of that phase. At the end of that phase, roll a dice. On a 4+ that unit suffers D3 mortal wounds.`,
+        desc: `At the start of your movement phase, you can pick 1 friendly CLANS SKRYRE WAR MACHINE within 3" of the bearer. Double that unit's Move characteristic until the end of that phase. At the end of that phase, roll a D6. On a 4+ that unit suffers D3 mortal wounds.`,
         when: [START_OF_MOVEMENT_PHASE],
       },
     ],
@@ -162,7 +162,7 @@ const Artifacts: TArtifacts = [
     effects: [
       {
         name: `Brooding Blade (Pestilens)`,
-        desc: `Pick 1 of the bearer's melee weapons. At the end of the combat phase, roll a dice for each model wounded by this weapon but not slain. On a 2+ that model's unit suffers D3 mortal wounds.`,
+        desc: `Pick 1 of the bearer's melee weapons. At the end of the combat phase, roll a D6 for each model wounded by this weapon but not slain. On a 2+ that model's unit suffers D3 mortal wounds.`,
         when: [END_OF_COMBAT_PHASE],
       },
     ],
@@ -172,7 +172,7 @@ const Artifacts: TArtifacts = [
     effects: [
       {
         name: `The Fumigatous (Pestilens)`,
-        desc: `At the start of each combat phase, you can pick 1 enemy unit within 6" of the bearer and roll a dice. On a 2+ that unit suffers 1 mortal wound. On a 5+ that unit suffers D3 mortal wounds instead of 1.`,
+        desc: `At the start of each combat phase, you can pick 1 enemy unit within 6" of the bearer and roll a D6. On a 2+ that unit suffers 1 mortal wound. On a 5+ that unit suffers D3 mortal wounds instead of 1.`,
         when: [START_OF_COMBAT_PHASE],
       },
     ],
@@ -182,7 +182,7 @@ const Artifacts: TArtifacts = [
     effects: [
       {
         name: `Blistrevous, the Living Cyst (Pestilens)`,
-        desc: `Add 2" to the bearer's Move characteristic. In addition, you can re-roll hit rolls for attacks made by the bearer. Starting from the second battle round, at the start of your hero phase, if there are any other friendly CLANS PESTILENS HEROES within 13" of the bearer, you must transfer this artefact to one of them, even if they already carry an artefact of power.`,
+        desc: `Add 2" to the bearer's Move characteristic. In addition, you can re-roll hit rolls for attacks made by the bearer. Starting from the second battle round, at the start of your hero phase, if there are any other friendly CLANS PESTILENS HEROES within 13" of the bearer, you must transfer this artifact to one of them, even if they already carry an artifact of power.`,
         when: [MOVEMENT_PHASE],
       },
       {
@@ -192,7 +192,7 @@ const Artifacts: TArtifacts = [
       },
       {
         name: `Blistrevous, the Living Cyst (Pestilens)`,
-        desc: `Starting from the second battle round, at the start of your hero phase, if there are any other friendly CLANS PESTILENS HEROES within 13" of the bearer, you must transfer this artefact to one of them, even if they already carry an artefact of power.`,
+        desc: `Starting from the second battle round, at the start of your hero phase, if there are any other friendly CLANS PESTILENS HEROES within 13" of the bearer, you must transfer this artifact to one of them, even if they already carry an artifact of power.`,
         when: [START_OF_HERO_PHASE],
       },
     ],
@@ -262,7 +262,7 @@ const Artifacts: TArtifacts = [
       },
       {
         name: `Rustcursed Armour (Verminus)`,
-        desc: `At the start of the combat phase, you can pick 1 enemy HERO with an artefact of power that is within 3" of the bearer and roll 3D6. If the roll is exactly 13, that artefact of power can no longer be used (if a weapon was picked when the artefact of power was selected, that weapon reverts to normal).`,
+        desc: `At the start of the combat phase, you can pick 1 enemy HERO with an artifact of power that is within 3" of the bearer and roll 3D6. If the roll is exactly 13, that artifact of power can no longer be used (if a weapon was picked when the artifact of power was selected, that weapon reverts to normal).`,
         when: [START_OF_COMBAT_PHASE],
       },
     ],
@@ -272,7 +272,7 @@ const Artifacts: TArtifacts = [
     effects: [
       {
         name: `Warpstone Charm (Verminus)`,
-        desc: `At the start of your hero phase, pick 1 unit within 3" of the bearer and roll a dice. On a 2-5 that unit suffers 1 mortal wound. On a 6 that unit suffers D3 mortal wounds. (Note that if there are no enemy units within 3" you must pick either a friendly unit or the bearer to be the target.)`,
+        desc: `At the start of your hero phase, pick 1 unit within 3" of the bearer and roll a D6. On a 2-5 that unit suffers 1 mortal wound. On a 6 that unit suffers D3 mortal wounds. (Note that if there are no enemy units within 3" you must pick either a friendly unit or the bearer to be the target.)`,
         when: [START_OF_HERO_PHASE],
       },
     ],
@@ -312,7 +312,7 @@ const Artifacts: TArtifacts = [
     effects: [
       {
         name: `Rat-tail Snake (Moulder)`,
-        desc: `If the unmodified save roll for an attack that targets the bearer is 6, the attacking unit suffers 1 mortal wound after all of its attacks have been resolved. `,
+        desc: `If the unmodified save roll for an attack that targets the bearer is 6, the attacking unit suffers 1 mortal wound after all of its attacks have been resolved.`,
         when: [SHOOTING_PHASE, COMBAT_PHASE],
       },
     ],
@@ -332,7 +332,7 @@ const Artifacts: TArtifacts = [
     effects: [
       {
         name: `Fleshgift Vial (Moulder)`,
-        desc: `Once per battle, in your shooting phase, you can pick 1 enemy unit within 6" of the bearer and roll a dice. On a 1, the bearer suffers 1 mortal wound. On a 2-5, that enemy unit suffers D3 mortal wounds. On a 6 that enemy unit suffers D6 mortal wounds.`,
+        desc: `Once per battle, in your shooting phase, you can pick 1 enemy unit within 6" of the bearer and roll a D6. On a 1, the bearer suffers 1 mortal wound. On a 2-5, that enemy unit suffers D3 mortal wounds. On a 6 that enemy unit suffers D6 mortal wounds.`,
         when: [SHOOTING_PHASE],
       },
     ],
@@ -393,16 +393,6 @@ const Artifacts: TArtifacts = [
       {
         name: `Gnawbomb (Eshin)`,
         desc: `Once per battle, in your hero phase, you can pick 1 terrain feature within 6" of the bearer. Until your next hero phase, that terrain feature has the scenery rules from the Gnawhole warscroll in addition to the scenery rules it already has.`,
-        when: [HERO_PHASE],
-      },
-    ],
-  },
-  {
-    name: ``,
-    effects: [
-      {
-        name: ``,
-        desc: ``,
         when: [HERO_PHASE],
       },
     ],

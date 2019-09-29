@@ -1,8 +1,8 @@
 import { DURING_GAME, END_OF_SETUP } from 'types/phases'
-import { IEffects } from 'types/data'
+import { TAbilities } from 'types/army'
 
 // General Allegiance Abilities (always active regardless of army composition)
-const Abilities: IEffects[] = [
+const Abilities: TAbilities = [
   {
     name: `Stubborn to the End`,
     desc: `If you roll a 1, 2 or 3 (before modifiers are applied) when taking a battleshock test for a friendly DISPOSSESSED unit, that unit is treated as having passed the battleshock test irrespective of any modifiers to the battleshock test or their Bravery characteristic.`,
@@ -10,19 +10,19 @@ const Abilities: IEffects[] = [
   },
   {
     name: `Grudgebound`,
-    desc: `After set-up is complete, but before the battle begins, choose or roll for a grudge from the table on the right. The rules for that grudge apply to all friendly DISPOSSESSED units for the duration of the battle.
+    desc: `After set-up is complete, but before the battle begins, choose or roll for a grudge from the table below. The rules for that grudge apply to all friendly DISPOSSESSED units for the duration of the battle.
     
-    1 - Stuck-up: You can re-roll hit rolls of 1 for friendly DISPOSSESSED units if the target of the attack is an enemy HERO. 
+    1: Stuck-up - You can re-roll hit rolls of 1 for friendly DISPOSSESSED units if the target of the attack is an enemy HERO. 
     
-    2 Speed Merchants: You can re-roll hit rolls of 1 for friendly DISPOSSESSED units if the target of the attack has a Move characteristic of 10+.
+    2: Speed Merchants - You can re-roll hit rolls of 1 for friendly DISPOSSESSED units if the target of the attack has a Move characteristic of 10+.
     
-    3 Monstrous Cheaters: You can re-roll hit rolls of 1 for friendly DISPOSSESSED units if the target of the attack is an enemy MONSTER. 
+    3: Monstrous Cheaters - You can re-roll hit rolls of 1 for friendly DISPOSSESSED units if the target of the attack is an enemy MONSTER. 
     
-    4 Cowardly Hordes: You can re-roll hit rolls of 1 for friendly DISPOSSESSED units if the target of the attack is in an enemy unit that had twenty or more models when it was set up. 
+    4: Cowardly Hordes - You can re-roll hit rolls of 1 for friendly DISPOSSESSED units if the target of the attack is in an enemy unit that had twenty or more models when it was set up. 
     
-    5 Shoddy Craftsmanship: You can re-roll hit rolls of 1 for friendly DISPOSSESSED units if the target of the attack has a Save characteristic of 2+, 3+, or 4+ . 
+    5: Shoddy Craftsmanship - You can re-roll hit rolls of 1 for friendly DISPOSSESSED units if the target of the attack has a Save characteristic of 2+, 3+, or 4+ . 
     
-    6 Sneaky Ambushers: You can re-roll hit rolls of 1 for friendly DISPOSSESSED units if the target of the attack is in cover, or did not start the battle set up on the battlefield.`,
+    6: Sneaky Ambushers - You can re-roll hit rolls of 1 for friendly DISPOSSESSED units if the target of the attack is in cover, or did not start the battle set up on the battlefield.`,
     when: [END_OF_SETUP],
   },
   {

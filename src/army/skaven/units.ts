@@ -1,23 +1,23 @@
 import { TBattalions, TUnits } from 'types/army'
 import {
-  HERO_PHASE,
-  START_OF_HERO_PHASE,
-  DURING_GAME,
-  SHOOTING_PHASE,
-  MOVEMENT_PHASE,
-  COMBAT_PHASE,
   BATTLESHOCK_PHASE,
-  START_OF_COMBAT_PHASE,
-  END_OF_COMBAT_PHASE,
-  START_OF_BATTLESHOCK_PHASE,
-  START_OF_SETUP,
-  END_OF_MOVEMENT_PHASE,
-  TURN_THREE_END_OF_MOVEMENT_PHASE,
   CHARGE_PHASE,
+  COMBAT_PHASE,
+  DURING_GAME,
+  END_OF_COMBAT_PHASE,
+  END_OF_MOVEMENT_PHASE,
+  END_OF_SETUP,
+  HERO_PHASE,
+  MOVEMENT_PHASE,
+  SHOOTING_PHASE,
+  START_OF_BATTLESHOCK_PHASE,
+  START_OF_COMBAT_PHASE,
+  START_OF_HERO_PHASE,
+  START_OF_SETUP,
   TURN_FOUR_START_OF_MOVEMENT_PHASE,
   TURN_FOUR_START_OF_ROUND,
   TURN_ONE_END_OF_MOVEMENT_PHASE,
-  END_OF_SETUP,
+  TURN_THREE_END_OF_MOVEMENT_PHASE,
 } from 'types/phases'
 
 // Unit Names
@@ -27,7 +27,7 @@ export const Units: TUnits = [
     effects: [
       {
         name: `Protection of the Horned Rat`,
-        desc: `Roll a dice each time you allocate a wound or mortal wound to this model. On a 5+ that wound or mortal wound is negated.`,
+        desc: `Roll a D6 each time you allocate a wound or mortal wound to this model. On a 5+ that wound or mortal wound is negated.`,
         when: [DURING_GAME],
       },
       {
@@ -59,7 +59,7 @@ export const Units: TUnits = [
         name: `Power Behind the Throne`,
         desc: `You can use this command ability at the start of your hero phase. If you do so, until your next hero phase, one friendly SKAVEN HERO other than this model can use the At the Double command ability without a command point being spent; another friendly SKAVEN HERO other than this model can use the Forward to Victory command ability without a command point being spent; and a third friendly SKAVEN HERO other than this model can use the Inspiring Presence command ability without a command point being spent.`,
         when: [START_OF_HERO_PHASE],
-        command: true,
+        command_ability: true,
       },
     ],
   },
@@ -68,7 +68,7 @@ export const Units: TUnits = [
     effects: [
       {
         name: `Protection of the Horned Rat`,
-        desc: `Roll a dice each time you allocate a wound or mortal wound to this model. On a 5+ that wound or mortal wound is negated.`,
+        desc: `Roll a D6 each time you allocate a wound or mortal wound to this model. On a 5+ that wound or mortal wound is negated.`,
         when: [DURING_GAME],
       },
       {
@@ -85,7 +85,7 @@ export const Units: TUnits = [
         name: `The Rat King`,
         desc: `You can use this command ability at the start of the combat phase. If you do so, in that phase you can re-roll wound rolls of 1 for attacks made by friendly SKAVENTIDE units while they are wholly within 13" of a friendly model with this command ability.`,
         when: [START_OF_COMBAT_PHASE],
-        command: true,
+        command_ability: true,
       },
     ],
   },
@@ -94,7 +94,7 @@ export const Units: TUnits = [
     effects: [
       {
         name: `Protection of the Horned Rat`,
-        desc: `Roll a dice each time you allocate a wound or mortal wound to this model. On a 5+ that wound or mortal wound is negated.`,
+        desc: `Roll a D6 each time you allocate a wound or mortal wound to this model. On a 5+ that wound or mortal wound is negated.`,
         when: [DURING_GAME],
       },
       {
@@ -104,7 +104,7 @@ export const Units: TUnits = [
       },
       {
         name: `The Great Manipulators`,
-        desc: `If this model is on the battlefield at the start of your hero phase, roll a dice. On a 3+, you receive 1 extra command point. On a 6 you receive D3 extra command points instead of 1.`,
+        desc: `If this model is on the battlefield at the start of your hero phase, roll a D6. On a 3+, you receive 1 extra command point. On a 6 you receive D3 extra command points instead of 1.`,
         when: [START_OF_HERO_PHASE],
       },
       {
@@ -121,7 +121,7 @@ export const Units: TUnits = [
         name: `Forth-forth, Children of the Horned Rat!`,
         desc: `You can use this command ability at the start of the battleshock phase. If you do so, pick 1 friendly model with this command ability. Do not take battleshock tests for friendly SKAVEN units while they are wholly within 26" of that model in that phase.`,
         when: [START_OF_BATTLESHOCK_PHASE],
-        command: true,
+        command_ability: true,
       },
     ],
   },
@@ -145,7 +145,7 @@ export const Units: TUnits = [
       },
       {
         name: `Warpfire Gauntlet`,
-        desc: `Once per battle, in your shooting phase, you can pick 1 enemy unit within 8" of this model and visible to them, and roll a dice. On a 2+ that unit suffers D3 mortal wounds.`,
+        desc: `Once per battle, in your shooting phase, you can pick 1 enemy unit within 8" of this model and visible to them, and roll a D6. On a 2+ that unit suffers D3 mortal wounds.`,
         when: [SHOOTING_PHASE],
       },
     ],
@@ -155,7 +155,7 @@ export const Units: TUnits = [
     effects: [
       {
         name: `More-more Warp-energy!`,
-        desc: `Before you make a hit roll for an attack with a Warp-energy Blade, you can say that the engineer has overloaded its generator. If you do so, the Damage characteristic for that attack is D6 instead of D3. However, if you do so and the unmodified hit roll is 1, that attack fails and this model suffers D6 mortal wounds. `,
+        desc: `Before you make a hit roll for an attack with a Warp-energy Blade, you can say that the engineer has overloaded its generator. If you do so, the Damage characteristic for that attack is D6 instead of D3. However, if you do so and the unmodified hit roll is 1, that attack fails and this model suffers D6 mortal wounds.`,
         when: [COMBAT_PHASE],
       },
     ],
@@ -165,7 +165,7 @@ export const Units: TUnits = [
     effects: [
       {
         name: `More-more Doomrocket!`,
-        desc: `Before you make a hit roll for an attack with a Doomrocket, you can say that the engineer has overloaded its warhead. If you do so, the Damage characteristic for that attack is 2D6 instead of D6. However, if you do so and the unmodified hit roll is 1, that attack fails and this model suffers 2D6 mortal wounds. `,
+        desc: `Before you make a hit roll for an attack with a Doomrocket, you can say that the engineer has overloaded its warhead. If you do so, the Damage characteristic for that attack is 2D6 instead of D6. However, if you do so and the unmodified hit roll is 1, that attack fails and this model suffers 2D6 mortal wounds.`,
         when: [SHOOTING_PHASE],
       },
     ],
@@ -185,7 +185,7 @@ export const Units: TUnits = [
       },
       {
         name: `Grinderfist Tunnellers`,
-        desc: `At the end of each of your movement phases, roll a dice for each underground reserve unit. On a 1 or 2, that unit remains underground in reserve (roll for it again in your next movement phase). On a 3+ set up that unit on the battlefield more than 9" from any enemy units.`,
+        desc: `At the end of each of your movement phases, roll a D6 for each underground reserve unit. On a 1 or 2, that unit remains underground in reserve (roll for it again in your next movement phase). On a 3+ set up that unit on the battlefield more than 9" from any enemy units.`,
         when: [END_OF_MOVEMENT_PHASE],
       },
       {
@@ -200,7 +200,7 @@ export const Units: TUnits = [
       },
       {
         name: `Warpfire Projectors`,
-        desc: `Do not use the attack sequence for an attack made with Warpfire Projectors. Instead, roll a dice for each model in the target unit that is within 8" of the attacking model. For each 4+ the target unit suffers 1 mortal wound.`,
+        desc: `Do not use the attack sequence for an attack made with Warpfire Projectors. Instead, roll a D6 for each model in the target unit that is within 8" of the attacking model. For each 4+ the target unit suffers 1 mortal wound.`,
         when: [SHOOTING_PHASE],
       },
       {
@@ -220,7 +220,7 @@ export const Units: TUnits = [
     effects: [
       {
         name: `Warp Lightning Blast`,
-        desc: `Do not use the attack sequence for an attack made with a Warp Lightning Blast. Instead roll a dice; that roll determines the power of that attack. Then roll 6 more dice. The target suffers 1 mortal wound for each of those rolls that is equal to or greater than the power of that attack.`,
+        desc: `Do not use the attack sequence for an attack made with a Warp Lightning Blast. Instead roll a D6; that roll determines the power of that attack. Then roll 6 more dice. The target suffers 1 mortal wound for each of those rolls that is equal to or greater than the power of that attack.`,
         when: [SHOOTING_PHASE],
       },
       {
@@ -231,7 +231,7 @@ export const Units: TUnits = [
     ],
   },
   {
-    name: `Skyre Acolytes`,
+    name: `Skryre Acolytes`,
     effects: [
       {
         name: `Quick-quick Volley!`,
@@ -255,7 +255,7 @@ export const Units: TUnits = [
       },
       {
         name: `Rolling Doom`,
-        desc: `After this model has made a normal move or a charge move, roll a dice for each unit that has any models it passed across, and each other unit that is within 1" of this model at the end of the move. On a 2+ that unit suffers D3 mortal wounds.`,
+        desc: `After this model has made a normal move or a charge move, roll a D6 for each unit that has any models it passed across, and each other unit that is within 1" of this model at the end of the move. On a 2+ that unit suffers D3 mortal wounds.`,
         when: [MOVEMENT_PHASE, CHARGE_PHASE],
       },
       {
@@ -322,7 +322,7 @@ export const Units: TUnits = [
         name: `Gnash-gnaw on their Bones`,
         desc: `You can use this command ability at the start of the combat phase. If you do so, pick 1 friendly Clans Verminus unit wholly within 13" of a friendly model with this command ability. Add 1 to the Attacks characteristic of melee weapons used by that unit in that phase.`,
         when: [START_OF_COMBAT_PHASE],
-        command: true,
+        command_ability: true,
       },
     ],
   },
@@ -346,17 +346,20 @@ export const Units: TUnits = [
     effects: [
       {
         name: `Protection of the Horned Rat`,
-        desc: `Roll a dice each time you allocate a wound or mortal wound to this model. On a 5+, that wound or mortal wound is negated.`,
+        desc: `Roll a D6 each time you allocate a wound or mortal wound to this model. On a 5+, that wound or mortal wound is negated.`,
         when: [DURING_GAME],
       },
       {
         name: `Realm Guide`,
         desc: `Instead of setting up this model on the battlefield, you can place this model to one side and say that it is moving through the cracks in reality as a reserve unit.
         
-        If you do so, at the end of your movement phase, set up this model wholly within 6" of a Gnawhole and more than 9" from any enemy models. This counts as this model's move for that movement phase.
-        
         Any units moving through the cracks in reality that are not set up on the battlefield before the start of the fourth battle round are slain.`,
-        when: [END_OF_MOVEMENT_PHASE, START_OF_SETUP, TURN_FOUR_START_OF_ROUND],
+        when: [START_OF_SETUP, TURN_FOUR_START_OF_ROUND],
+      },
+      {
+        name: `Realm Guide`,
+        desc: `If this unit is placed in reserve, at the end of your movement phase, set up this model wholly within 6" of a Gnawhole and more than 9" from any enemy models. This counts as this model's move for that movement phase.`,
+        when: [END_OF_MOVEMENT_PHASE],
       },
       {
         name: `Terrifying`,
@@ -380,7 +383,7 @@ export const Units: TUnits = [
     effects: [
       {
         name: `Aversion to Death`,
-        desc: `After the first wound or mortal wound is allocated to this unit in any phase, you can roll a dice each time you allocate a further wound or mortal wound to this unit in that phase. On a 5+ that wound or mortal wound is negated.`,
+        desc: `After the first wound or mortal wound is allocated to this unit in any phase, you can roll a D6 each time you allocate a further wound or mortal wound to this unit in that phase. On a 5+ that wound or mortal wound is negated.`,
         when: [DURING_GAME],
       },
       {
@@ -395,7 +398,7 @@ export const Units: TUnits = [
     effects: [
       {
         name: `Protection of the Horned Rat`,
-        desc: `Roll a dice each time you allocate a wound or mortal wound to this model. On a 5+ that wound or mortal wound is negated.`,
+        desc: `Roll a D6 each time you allocate a wound or mortal wound to this model. On a 5+ that wound or mortal wound is negated.`,
         when: [DURING_GAME],
       },
       {
@@ -417,7 +420,7 @@ export const Units: TUnits = [
         name: `Tyrant of Battle`,
         desc: `You can use this command ability in the combat phase. If you do so, pick 1 friendly model with this command ability. In that phase, you can re- roll hit and wound rolls of 1 for friendly CLANS VERMINUS units while they are wholly within 13" of that model.`,
         when: [COMBAT_PHASE],
-        command: true,
+        command_ability: true,
       },
     ],
   },
@@ -433,7 +436,7 @@ export const Units: TUnits = [
         name: `Gnash-gnaw on their Bones!`,
         desc: `You can use this command ability at the start of the combat phase. If you do so, pick 1 friendly CLANS VERMINUS unit wholly within 13" of a friendly model with this command ability. Add 1 to the Attacks characteristic of melee weapons used by that unit in that phase. You cannot pick the same unit to benefit from this ability more than once per phase.`,
         when: [START_OF_COMBAT_PHASE],
-        command: true,
+        command_ability: true,
       },
     ],
   },
@@ -449,7 +452,7 @@ export const Units: TUnits = [
         name: `Gnash-gnaw on their Bones!`,
         desc: `You can use this command ability at the start of the combat phase. If you do so, pick 1 friendly CLANS VERMINUS unit wholly within 13" of a friendly model with this command ability. Add 1 to the Attacks characteristic of melee weapons used by that unit in that phase. You cannot pick the same unit to benefit from this ability more than once per phase.`,
         when: [START_OF_COMBAT_PHASE],
-        command: true,
+        command_ability: true,
       },
     ],
   },
@@ -483,12 +486,12 @@ export const Units: TUnits = [
     effects: [
       {
         name: `Warpfire`,
-        desc: `Do not use the attack sequence for an attack made with a Warpfire Thrower. Instead, roll a dice for each model in the target unit that is within 8" of the attacking model. For each 4+ the target unit suffers 1 mortal wound.`,
+        desc: `Do not use the attack sequence for an attack made with a Warpfire Thrower. Instead, roll a D6 for each model in the target unit that is within 8" of the attacking model. For each 4+ the target unit suffers 1 mortal wound.`,
         when: [SHOOTING_PHASE],
       },
       {
         name: `More-more Warpfire!`,
-        desc: `Before you pick the target for this model's Warpfire Thrower, you can say that the crew are disabling the flow regulator. If you do so, roll 2 dice for each enemy model within 8" of this model instead of 1 dice. However, if you do so, you must roll a dice after the dice have been rolled to see if the Warpfire Thrower inflicts any mortal wounds, and on a 1 or 2 this model is slain.`,
+        desc: `Before you pick the target for this model's Warpfire Thrower, you can say that the crew are disabling the flow regulator. If you do so, roll 2 dice for each enemy model within 8" of this model instead of 1 dice. However, if you do so, you must roll a D6 after the dice have been rolled to see if the Warpfire Thrower inflicts any mortal wounds, and on a 1 or 2 this model is slain.`,
         when: [SHOOTING_PHASE],
       },
     ],
@@ -503,7 +506,7 @@ export const Units: TUnits = [
       },
       {
         name: `Tunnel Skulkers`,
-        desc: `At the end of any of your movement phases, if this model is tunnelling, it can arrive on the battlefield. If it does so, set up this model anywhere on the battlefield more than 9" from any enemy models, and then set up any unit that joined this model wholly within 13" of this model and more than 9" from any enemy models. Then roll a dice for this model and any unit that joined it. On a 1 or 2, that unit suffers D6 mortal wounds.`,
+        desc: `At the end of any of your movement phases, if this model is tunnelling, it can arrive on the battlefield. If it does so, set up this model anywhere on the battlefield more than 9" from any enemy models, and then set up any unit that joined this model wholly within 13" of this model and more than 9" from any enemy models. Then roll a D6 for this model and any unit that joined it. On a 1 or 2, that unit suffers D6 mortal wounds.`,
         when: [END_OF_MOVEMENT_PHASE],
       },
       {
@@ -543,7 +546,7 @@ export const Units: TUnits = [
       },
       {
         name: `Book of Woes`,
-        desc: `In your hero phase, you can pick 1 enemy unit within 13" of this unit's Bringer-of-the-Word and roll a dice. On a 4+ that unit suffers 1 mortal wound. On a 6 that unit suffers D3 mortal wounds instead of 1. This ability has no effect on CLANS PESTILENS units.`,
+        desc: `In your hero phase, you can pick 1 enemy unit within 13" of this unit's Bringer-of-the-Word and roll a D6. On a 4+ that unit suffers 1 mortal wound. On a 6 that unit suffers D3 mortal wounds instead of 1. This ability has no effect on CLANS PESTILENS units.`,
         when: [HERO_PHASE],
       },
     ],
@@ -563,7 +566,7 @@ export const Units: TUnits = [
       },
       {
         name: `Plague Disciples`,
-        desc: `You can re-roll battleshock tests for this unit while it is wholly within 18" of any friendly PLAGUE`,
+        desc: `You can re-roll battleshock tests for this unit while it is wholly within 18" of any friendly PLAGUE MONKS units.`,
         when: [BATTLESHOCK_PHASE],
       },
       {
@@ -582,7 +585,7 @@ export const Units: TUnits = [
         
         Disease-disease!: If this prayer is answered, pick 1 enemy unit within 13" of this model, and roll 1 dice for each model in that unit. For each 6, that unit suffers 1 mortal wound. This prayer has no effect on CLANS PESTILENS units.
         
-        Pestilence-pestilence!: If this prayer is answered, pick a point on the battlefield that is within 13" of this model. Roll a dice for each unit within 3" of that point. On 4+ that unit suffers D3 mortal wounds. This prayer has no effect on CLANS PESTILENS units.`,
+        Pestilence-pestilence!: If this prayer is answered, pick a point on the battlefield that is within 13" of this model. Roll a D6 for each unit within 3" of that point. On 4+ that unit suffers D3 mortal wounds. This prayer has no effect on CLANS PESTILENS units.`,
         when: [HERO_PHASE],
       },
       {
@@ -607,7 +610,7 @@ export const Units: TUnits = [
       },
       {
         name: `Great Plague Censer`,
-        desc: `Do not use the attack sequence for an attack made with this model's Great Plague Censer. Instead pick 1 enemy unit within 3" of this model and roll a dice. On a 2+ that unit suffers a number of mortal wounds equal to the Great Plague Censer value shown on the damage table above.`,
+        desc: `Do not use the attack sequence for an attack made with this model's Great Plague Censer. Instead pick 1 enemy unit within 3" of this model and roll a D6. On a 2+ that unit suffers a number of mortal wounds equal to the Great Plague Censer value shown on the damage table above.`,
         when: [COMBAT_PHASE],
       },
       {
@@ -626,7 +629,7 @@ export const Units: TUnits = [
       },
       {
         name: `Protection of the Horned Rat`,
-        desc: `Roll a dice each time you allocate a wound or mortal wound to this model. On a 5+ that wound or mortal wound is negated.`,
+        desc: `Roll a D6 each time you allocate a wound or mortal wound to this model. On a 5+ that wound or mortal wound is negated.`,
         when: [DURING_GAME],
       },
       {
@@ -641,7 +644,7 @@ export const Units: TUnits = [
     effects: [
       {
         name: `Protection of the Horned Rat`,
-        desc: `Roll a dice each time you allocate a wound or mortal wound to this model. On a 5+ that wound or mortal wound is negated.`,
+        desc: `Roll a D6 each time you allocate a wound or mortal wound to this model. On a 5+ that wound or mortal wound is negated.`,
         when: [DURING_GAME],
       },
       {
@@ -663,7 +666,7 @@ export const Units: TUnits = [
         name: `Lord of Pestilence`,
         desc: `You can use this command ability in the combat phase. If you do so, pick 1 friendly model with this command ability. In that phase, you can re-roll hit rolls for friendly CLANS PESTILENS units while they are wholly within 13" of that model.`,
         when: [COMBAT_PHASE],
-        command: true,
+        command_ability: true,
       },
     ],
   },
@@ -672,7 +675,7 @@ export const Units: TUnits = [
     effects: [
       {
         name: `Protection of the Horned Rat`,
-        desc: `Roll a dice each time you allocate a wound or mortal wound to this model. On a 5+ that wound or mortal wound is negated.`,
+        desc: `Roll a D6 each time you allocate a wound or mortal wound to this model. On a 5+ that wound or mortal wound is negated.`,
         when: [DURING_GAME],
       },
       {
@@ -712,12 +715,12 @@ export const Units: TUnits = [
       },
       {
         name: `Warpstone Spikes`,
-        desc: `Each time this model is affected by a spell or endless spell, you can roll a dice. If you do so, on a 4+ ignore the effects of that spell on this model.`,
+        desc: `Each time this model is affected by a spell or endless spell, you can roll a D6. If you do so, on a 4+ ignore the effects of that spell on this model.`,
         when: [HERO_PHASE],
       },
       {
         name: `Too Horrible to Die`,
-        desc: `The first time this model is slain, before removing it from the battlefield, roll a dice and look up the roll on warscroll.`,
+        desc: `The first time this model is slain, before removing it from the battlefield, roll a D6 and look up the roll on warscroll.`,
         when: [DURING_GAME],
       },
     ],
@@ -742,7 +745,7 @@ export const Units: TUnits = [
       },
       {
         name: `Unleash More-more Beasts!`,
-        desc: `You can use this command ability when a friendly CLANS MOULDER PACK unit is destroyed if a friendly model with this command ability is on the battlefield. If you do so, roll a dice. On a 5+ a new unit identical to the one that was destroyed is added to your army. Set up the new unit wholly within your territory and wholly within 6" of the edge of the battlefield, more than 9" from any enemy units. You cannot use this command ability more than once per phase.`,
+        desc: `You can use this command ability when a friendly CLANS MOULDER PACK unit is destroyed if a friendly model with this command ability is on the battlefield. If you do so, roll a D6. On a 5+ a new unit identical to the one that was destroyed is added to your army. Set up the new unit wholly within your territory and wholly within 6" of the edge of the battlefield, more than 9" from any enemy units. You cannot use this command ability more than once per phase.`,
         when: [DURING_GAME],
       },
     ],
@@ -797,7 +800,7 @@ export const Units: TUnits = [
     effects: [
       {
         name: `Protection of the Horned Rat`,
-        desc: `Roll a dice each time you allocate a wound or mortal wound to this model. On a 5+ that wound or mortal wound is negated.`,
+        desc: `Roll a D6 each time you allocate a wound or mortal wound to this model. On a 5+ that wound or mortal wound is negated.`,
         when: [DURING_GAME],
       },
       {
@@ -819,7 +822,7 @@ export const Units: TUnits = [
         name: `Lord of Assassins`,
         desc: `You can use this command ability in your shooting phase or any combat phase. If you do so, pick 1 friendly model with this command ability. In that phase, you can re-roll wound rolls for friendly CLANS ESHIN units while they are wholly within 13" of that model.`,
         when: [SHOOTING_PHASE, COMBAT_PHASE],
-        command: true,
+        command_ability: true,
       },
     ],
   },
@@ -922,7 +925,7 @@ export const Battalions: TBattalions = [
     effects: [
       {
         name: `Verminous Infestation`,
-        desc: `At the start of your hero phase, pick 1 terrain feature within 13" of this battalion's VERMINLORD CORRUPTOR. Roll a dice for each enemy unit within 3" of that terrain feature. On a 4+ that unit suffers D3 mortal wounds.`,
+        desc: `At the start of your hero phase, pick 1 terrain feature within 13" of this battalion's VERMINLORD CORRUPTOR. Roll a D6 for each enemy unit within 3" of that terrain feature. On a 4+ that unit suffers D3 mortal wounds.`,
         when: [START_OF_HERO_PHASE],
       },
     ],
@@ -932,12 +935,12 @@ export const Battalions: TBattalions = [
     effects: [
       {
         name: `Arkhspark Voltik`,
-        desc: `In your shooting phase, you can pick 1 WARP LIGHTNING CANNON from this enginecoven that is within 13" of the WARLOCK ENGINEER from the same enginecoven, or the ARCH- WARLOCK from the same battalion. If you do so, subtract 1 from the power of that WARP LIGHTNING CANNON's Warp Lightning Blast in that shooting phase (to a minimum power of 1).`,
+        desc: `In your shooting phase, you can pick 1 WARP LIGHTNING CANNON from this enginecoven that is within 13" of the WARLOCK ENGINEER from the same enginecoven, or the ARCH-WARLOCK from the same battalion. If you do so, subtract 1 from the power of that WARP LIGHTNING CANNON's Warp Lightning Blast in that shooting phase (to a minimum power of 1).`,
         when: [SHOOTING_PHASE],
       },
       {
         name: `Gascloud Chokelung`,
-        desc: `You can re-roll hit rolls of 1 for attacks made with missile weapons by this enginecoven's SKRYRE ACOLYTES and STORMFIENDS armed with Windlaunchers while they are wholly within 13" of the WARLOCK ENGINEER from the same enginecoven, or the ARCH- WARLOCK from the same battalion.`,
+        desc: `You can re-roll hit rolls of 1 for attacks made with missile weapons by this enginecoven's SKRYRE ACOLYTES and STORMFIENDS armed with Windlaunchers while they are wholly within 13" of the WARLOCK ENGINEER from the same enginecoven, or the ARCH-WARLOCK from the same battalion.`,
         when: [SHOOTING_PHASE],
       },
       {
@@ -947,12 +950,12 @@ export const Battalions: TBattalions = [
       },
       {
         name: `Rattlegauge Warplock`,
-        desc: `You can re-roll hit rolls of 1 for attacks made with missile weapons by this enginecoven's WARPLOCK JEZZAILS and RATLING GUNS while they are wholly within 13" of the WARLOCK ENGINEER from the same enginecoven, or the ARCH- WARLOCK from the same battalion.`,
+        desc: `You can re-roll hit rolls of 1 for attacks made with missile weapons by this enginecoven's WARPLOCK JEZZAILS and RATLING GUNS while they are wholly within 13" of the WARLOCK ENGINEER from the same enginecoven, or the ARCH-WARLOCK from the same battalion.`,
         when: [SHOOTING_PHASE],
       },
       {
         name: `Whyrlblade Threshik`,
-        desc: `You can move a unit from this enginecoven an extra 3" when it starts the move wholly within 13" of the WARLOCK ENGINEER from the same enginecoven, or the ARCH- WARLOCK from the same battalion.`,
+        desc: `You can move a unit from this enginecoven an extra 3" when it starts the move wholly within 13" of the WARLOCK ENGINEER from the same enginecoven, or the ARCH-WARLOCK from the same battalion.`,
         when: [MOVEMENT_PHASE],
       },
     ],
@@ -962,7 +965,7 @@ export const Battalions: TBattalions = [
     effects: [
       {
         name: `Plague Altar`,
-        desc: `Roll a dice each time you allocate a wound or mortal wound to a PLAGUE MONKS unit from this battalion while it is wholly within 18" of the same battalion's PLAGUE PRIEST. On a 6 that wound or mortal wound is negated.`,
+        desc: `Roll a D6 each time you allocate a wound or mortal wound to a PLAGUE MONKS unit from this battalion while it is wholly within 18" of the same battalion's PLAGUE PRIEST. On a 6 that wound or mortal wound is negated.`,
         when: [DURING_GAME],
       },
     ],

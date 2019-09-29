@@ -17,7 +17,7 @@ const Artifacts: TArtifacts = [
     effects: [
       {
         name: `Sanguine Pearl`,
-        desc: `Roll a dice each time you allocate a wound or mortal wound to the bearer that was caused by a melee weapon. On a 5+ the wound is negated.`,
+        desc: `Roll a D6 each time you allocate a wound or mortal wound to the bearer that was caused by a melee weapon. On a 5+ the wound is negated.`,
         when: [DURING_GAME],
       },
     ],
@@ -37,7 +37,7 @@ const Artifacts: TArtifacts = [
     effects: [
       {
         name: `Ankusha Spu`,
-        desc: `Add 3" to the bearer's Move characteristic. In addition, re-roll hit rolls of 1 for attacks made by the bearer's mount.`,
+        desc: `Add 3" to the bearer's Move characteristic. In addition, re-roll hit rolls of 1 for attacks made by the bearer's mount.`,
         when: [MOVEMENT_PHASE, COMBAT_PHASE],
       },
     ],
@@ -87,7 +87,7 @@ const Artifacts: TArtifacts = [
     effects: [
       {
         name: `Black Pearl`,
-        desc: `Roll a dice each time you allocate a wound or mortal wound to the bearer. On a 6+ the wound is negated.`,
+        desc: `Roll a D6 each time you allocate a wound or mortal wound to the bearer. On a 6+ the wound is negated.`,
         when: [DURING_GAME],
       },
     ],
@@ -97,7 +97,7 @@ const Artifacts: TArtifacts = [
     effects: [
       {
         name: `Lliandra's Last Lament`,
-        desc: `Once per battle, at the start of the battleshock phase, you can say that the bearer will release Lliandra's Last Lament. If you do so, friendly IDONETH DEEPKIN units wholly within 18" of the bearer do not have to take battleshock tests that phase.`,
+        desc: `Once per battle, at the start of the battleshock phase, you can say that the bearer will release Lliandra's Last Lament. If you do so, friendly IDONETH DEEPKIN units wholly within 18" of the bearer do not have to take battleshock tests that phase.`,
         when: [START_OF_BATTLESHOCK_PHASE],
       },
     ],
@@ -147,7 +147,7 @@ const Artifacts: TArtifacts = [
     effects: [
       {
         name: `Steelshell Pearl`,
-        desc: `Roll a dice each time you allocate a wound or mortal wound to the bearer that was caused by a missile weapon. On a 5+ the wound is negated.`,
+        desc: `Roll a D6 each time you allocate a wound or mortal wound to the bearer that was caused by a missile weapon. On a 5+ the wound is negated.`,
         when: [DURING_GAME],
       },
     ],
@@ -167,7 +167,7 @@ const Artifacts: TArtifacts = [
     effects: [
       {
         name: `Dritchleech`,
-        desc: `Subtract 1 from the casting rolls of WIZARDS while they are within 18" of the bearer. IDONETH DEEPKINWIZARDS are not affected by this artefact.`,
+        desc: `Subtract 1 from the casting rolls of WIZARDS while they are within 18" of the bearer. IDONETH DEEPKINWIZARDS are not affected by this artifact.`,
         when: [HERO_PHASE],
       },
     ],
@@ -189,11 +189,11 @@ const Artifacts: TArtifacts = [
         name: `Disharmony Stones`,
         desc: `Once per battle, at the start of your hero phase, pick up to two enemy HEROES that are within 12" of the bearer. The opposing player must then choose one of the following options:
         
-        a) Roll a dice for each HERO picked. On a 3+ that hero suffers 1 mortal wound.
+        a) Roll a D6 for each HERO picked. On a 3+ that hero suffers 1 mortal wound.
         
-        b) Roll a dice for each HERO picked. On a 5+ that hero suffers D3 mortal wounds.
+        b) Roll a D6 for each HERO picked. On a 5+ that hero suffers D3 mortal wounds.
         
-        c) Each HERO picked suffers D3 mortal wounds. Then roll a dice. On a 4+ the bearer suffers D3 mortal wounds`,
+        c) Each HERO picked suffers D3 mortal wounds. Then roll a D6. On a 4+ the bearer suffers D3 mortal wounds`,
         when: [START_OF_HERO_PHASE],
       },
     ],
@@ -213,7 +213,7 @@ const Artifacts: TArtifacts = [
     effects: [
       {
         name: `Arcane Pearl`,
-        desc: `Roll a dice each time you allocate a mortal wound to the bearer. On a 5+ the wound is negated.`,
+        desc: `Roll a D6 each time you allocate a mortal wound to the bearer. On a 5+ the wound is negated.`,
         when: [DURING_GAME],
       },
     ],
@@ -243,12 +243,12 @@ const Artifacts: TArtifacts = [
     effects: [
       {
         name: `Bauble of Buoyancy`,
-        desc: `The bearer can fly. In addition, double the result of run rolls for the bearer`,
+        desc: `The bearer can fly. In addition, double the result of run rolls for the bearer.`,
         when: [DURING_GAME],
       },
       {
         name: `Bauble of Buoyancy`,
-        desc: `The bearer can fly. In addition, double the result of run rolls for the bearer`,
+        desc: `The bearer can fly. In addition, double the result of run rolls for the bearer.`,
         when: [MOVEMENT_PHASE],
       },
     ],
@@ -258,7 +258,7 @@ const Artifacts: TArtifacts = [
     effects: [
       {
         name: `Kraken Tooth`,
-        desc: `Once per battle, in your shooting phase, pick an enemy unit within 12" of the bearer that is visible to them. Then, roll a dice and look up the result below.
+        desc: `Once per battle, in your shooting phase, pick an enemy unit within 12" of the bearer that is visible to them. Then, roll a D6 and look up the result below.
         
         1: The bearer suffers D3 mortal wounds.
         

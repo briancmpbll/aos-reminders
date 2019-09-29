@@ -1,4 +1,4 @@
-import { TCommandTraits } from 'types/army'
+import { TTraits } from 'types/army'
 import {
   BATTLESHOCK_PHASE,
   COMBAT_PHASE,
@@ -11,7 +11,7 @@ import {
   TURN_ONE_START_OF_ROUND,
 } from 'types/phases'
 
-const CommandTraits: TCommandTraits = [
+const CommandTraits: TTraits = [
   {
     name: `Cunning Plans`,
     effects: [
@@ -87,7 +87,7 @@ const CommandTraits: TCommandTraits = [
     effects: [
       {
         name: `Spiteful Git`,
-        desc: `Roll a dice each time a wound or mortal wound is allocated to this model. On a 4+ the unit that inflicted the wound or mortal wound suffers 1 mortal wound. On a 6, it suffers D3 mortal wounds instead.`,
+        desc: `Roll a D6 each time a wound or mortal wound is allocated to this model. On a 4+ the unit that inflicted the wound or mortal wound suffers 1 mortal wound. On a 6, it suffers D3 mortal wounds instead.`,
         when: [DURING_GAME],
       },
     ],
@@ -97,7 +97,7 @@ const CommandTraits: TCommandTraits = [
     effects: [
       {
         name: `Great Shaman`,
-        desc: `This general knows 1 extra spell from the Lore of the Moonclans`,
+        desc: `This general knows 1 extra spell from the Lore of the Moonclans.`,
         when: [HERO_PHASE],
       },
     ],

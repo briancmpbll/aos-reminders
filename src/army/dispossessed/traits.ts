@@ -1,7 +1,7 @@
-import { TCommandTraits } from 'types/army'
+import { TTraits } from 'types/army'
 import { HERO_PHASE, DURING_GAME, COMBAT_PHASE } from 'types/phases'
 
-const CommandTraits: TCommandTraits = [
+const CommandTraits: TTraits = [
   {
     name: `Resolute`,
     effects: [
@@ -37,7 +37,7 @@ const CommandTraits: TCommandTraits = [
     effects: [
       {
         name: `Unforgiving`,
-        desc: `Add 1 to wound rolls for attacks made by this general if the target is from a unit that has inflicted any wounds on this general. `,
+        desc: `Add 1 to wound rolls for attacks made by this general if the target is from a unit that has inflicted any wounds on this general.`,
         when: [DURING_GAME],
       },
     ],
@@ -47,7 +47,7 @@ const CommandTraits: TCommandTraits = [
     effects: [
       {
         name: `Battle Fury`,
-        desc: `Roll a dice after this general completes their attacks in the combat phase; on a roll of 6+ they can fight again (do not roll again after completing the second set of attacks).`,
+        desc: `Roll a D6 after this general completes their attacks in the combat phase; on a roll of 6+ they can fight again (do not roll again after completing the second set of attacks).`,
         when: [COMBAT_PHASE],
       },
     ],

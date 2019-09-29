@@ -1,86 +1,114 @@
-import React from 'react'
-import { sortBy, capitalize } from 'lodash'
-import './army_builder.css'
-import { TUnits, TArtifacts, TBattalions, TCommandTraits } from 'types/army'
-import { RealmscapeFeatures } from 'army/malign_sorcery'
-import { SelectRealmscape } from './select_realmscape'
+import React, { useMemo, useEffect } from 'react'
+import { connect } from 'react-redux'
+import { CardMultiSelect, CardSingleSelect } from 'components/info/card'
+import { getArmyBuilderCards } from './army_builder_cards'
+import { withSelectOne, withSelectMultiple } from 'utils/withSelect'
+import { getArmy } from 'utils/getArmy/getArmy'
+import { componentWithSize } from 'utils/mapSizesToProps'
+import { realmscape, selections, army, selectors } from 'ducks'
+import { TSupportedFaction } from 'meta/factions'
+import { RealmscapeFeatures } from 'army/generic'
+import { IArmy } from 'types/army'
 import { ISelections } from 'types/selections'
-import { TSelectOneSetValueFn, TDropdownOption, SelectMulti } from './select'
-import { ValueType } from 'react-select/lib/types'
+import { TRealms } from 'types/realmscapes'
+import { IStore } from 'types/store'
 
-type TFocusType = 'unit' | 'artifact' | 'battalion' | 'trait'
-type TFocusTypes = 'units' | 'artifacts' | 'battalions' | 'traits'
-type TUpdateFn = (newState: ISelections) => void
-type TUpdateState = (selectValues: ValueType<TDropdownOption>[]) => void
-type TUseState = (state: ISelections, key: TFocusTypes, updateFn: TUpdateFn) => TUpdateState
-
-interface IArmyBuilderProps {
-  army: {
-    Artifacts: TArtifacts
-    Battalions: TBattalions
-    Traits: TCommandTraits
-    Units: TUnits
-  }
-  realmscape: string
-  setSelections: (x: ISelections) => any
-  setRealmscape: TSelectOneSetValueFn
+export interface IArmyBuilderProps {
+  factionName: TSupportedFaction
+  realmscape_feature: string | null
+  realmscape: TRealms | null
   selections: ISelections
+  isMobile: boolean
+  setRealmscape: (value: string | null) => void
+  setRealmscapeFeature: (value: string | null) => void
+  updateAllegiances: (values: string[]) => void
+  updateArmy: (army: IArmy) => void
+  updateArtifacts: (values: string[]) => void
+  updateBattalions: (values: string[]) => void
+  updateCommands: (values: string[]) => void
+  updateEndlessSpells: (values: string[]) => void
+  updateScenery: (values: string[]) => void
+  updateSpells: (values: string[]) => void
+  updateTraits: (values: string[]) => void
+  updateTriumphs: (values: string[]) => void
+  updateUnits: (values: string[]) => void
 }
 
-const updateState: TUseState = (state, key, setSelections) => {
-  return (selectValues: ValueType<TDropdownOption>[]) => {
-    const newState = { ...state }
-    newState[key] = selectValues ? (selectValues as TDropdownOption[]).map(x => x.value) : []
-    setSelections(newState)
-  }
-}
+const ArmyBuilderComponent: React.FC<IArmyBuilderProps> = props => {
+  const { factionName, isMobile, updateArmy, realmscape } = props
 
-export const ArmyBuilder = (props: IArmyBuilderProps) => {
-  const { army, setSelections, selections, setRealmscape } = props
-  const { units, traits, artifacts, battalions } = selections
-  const useArtifacts = updateState(selections, 'artifacts', setSelections)
-  const useBattalions = updateState(selections, 'battalions', setSelections)
-  const useTraits = updateState(selections, 'traits', setSelections)
-  const useUnits = updateState(selections, 'units', setSelections)
+  const army = useMemo(() => getArmy(factionName, realmscape), [factionName, realmscape]) as IArmy
+
+  useEffect(() => {
+    updateArmy(army)
+  }, [army, updateArmy])
+
+  const realmFeatureItems = useMemo(() => {
+    const features = RealmscapeFeatures.map(x => x.name)
+    return realmscape ? features.filter(f => f.includes(realmscape)) : features
+  }, [realmscape])
+
+  const rowClass = useMemo(() => `row d-print-none pb-1 ${isMobile ? `mx-1` : `pt-2 w-75`}`, [isMobile])
+  const cards = useMemo(() => getArmyBuilderCards(army, props, realmFeatureItems), [
+    army,
+    props,
+    realmFeatureItems,
+  ])
 
   return (
-    <div className="container">
-      <div className="row d-print-none">
-        <div className="col card-group mx-auto">
-          <Card items={sortBy(army.Units, 'name')} values={units} type={'unit'} setValues={useUnits} />
-          <Card items={army.Traits} type={'trait'} values={traits} setValues={useTraits} />
-          <Card items={army.Artifacts} type={'artifact'} values={artifacts} setValues={useArtifacts} />
-          <Card
-            items={sortBy(army.Battalions, 'name')}
-            values={battalions}
-            type={'battalion'}
-            setValues={useBattalions}
-          />
-          <SelectRealmscape setValue={setRealmscape} items={RealmscapeFeatures.map(x => x.name)} />
-        </div>
+    <div className="d-flex justify-content-center">
+      <div className={rowClass}>
+        {cards.map(card =>
+          card.type === 'multi' ? (
+            <CardMultiSelect
+              items={card.items}
+              setValues={withSelectMultiple(card.setValues)}
+              title={card.title}
+              values={card.values}
+              key={card.title}
+            />
+          ) : (
+            <CardSingleSelect
+              items={card.items}
+              setValue={withSelectOne(card.setValue)}
+              title={card.title}
+              value={card.value}
+              key={card.title}
+            />
+          )
+        )}
       </div>
     </div>
   )
 }
 
-interface ICardProps {
-  values: string[]
-  type: TFocusType
-  items: TUnits | TBattalions | TArtifacts
-  setValues: TUpdateState
+const mapStateToProps = (state: IStore, ownProps) => ({
+  ...ownProps,
+  realmscape: selectors.getRealmscape(state),
+  realmscape_feature: selectors.getRealmscapeFeature(state),
+  selections: selectors.getSelections(state),
+  factionName: selectors.getFactionName(state),
+})
+
+const mapDispatchToProps = {
+  setRealmscape: realmscape.actions.setRealmscape,
+  setRealmscapeFeature: realmscape.actions.setRealmscapeFeature,
+  updateAllegiances: selections.actions.updateAllegiances,
+  updateArmy: army.actions.updateArmy,
+  updateArtifacts: selections.actions.updateArtifacts,
+  updateBattalions: selections.actions.updateBattalions,
+  updateCommands: selections.actions.updateCommands,
+  updateEndlessSpells: selections.actions.updateEndlessSpells,
+  updateScenery: selections.actions.updateScenery,
+  updateSpells: selections.actions.updateSpells,
+  updateTraits: selections.actions.updateTraits,
+  updateTriumphs: selections.actions.updateTriumphs,
+  updateUnits: selections.actions.updateUnits,
 }
 
-const Card = (props: ICardProps) => {
-  const { items, type, setValues, values } = props
-  const selectItems = items.map(x => x.name)
-  return (
-    <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mx-auto mt-3">
-      <div className="card">
-        <div className="card-body">
-          <h4 className="text-center">Add {capitalize(type)}s</h4>
-          <SelectMulti values={values} items={selectItems} setValues={setValues} isClearable={true} />
-        </div>
-      </div>
-    </div>
-  )
-}
+const ArmyBuilder = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(componentWithSize(ArmyBuilderComponent))
+
+export default ArmyBuilder
